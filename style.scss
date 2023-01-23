@@ -1,5 +1,14 @@
 @import './styles/base.scss';
 
+
+$color-blue: #015A6F;
+$color-blue-light: #B2CDD3;
+:root{
+  --color-blue: #015A6F
+  --color-blue-light: #B2CDD3
+}
+
+
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 5vmin;
@@ -7,7 +16,11 @@ body {
 }
 
 a {
-  color: blue;
+  color: var(--color-blue, blue);
+  transition: all 0.2s;
+  &:hover{
+    font-size: 1.2rem;
+  }
 }
 
 h1 {
@@ -27,5 +40,42 @@ ul {
   height: 5vmin;
   width: 5vmin;
   border-radius: 50%;
-  background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  background: radial-gradient(circle at bottom right, $color-blue, $color-blue-light);
+  box-shadow: 1px 1px 2px gray;  
+  transform: translateX(15vw);
+  animation: start 1s 0s, return 1s 1s, slide 1s 2s, return 1s 3s, slide 1s 4s, return 1s 5s, slide 1s 6s, return 1s 7s;
+
+  transition: height .2s, width .2s, margin .2s;
+  &:hover{
+    margin-inline-start: -2vmin;
+    margin-top: -2vmin;
+    height: 9vmin;
+    width: 9vmin;
+
+  }
+}
+
+@keyframes start {
+  from{
+    transform: translateX(15vw);
+  }
+  to{
+    transform: translateX(30vw);
+  }
+}
+@keyframes slide {
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(30vw);
+  }
+}
+@keyframes return {
+  from{
+    transform: translateX(30vw);
+  }
+  to{
+    transform: translateX(0);
+  }
 }
